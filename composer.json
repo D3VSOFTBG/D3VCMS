@@ -33,7 +33,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "D3VSOFT\\Theme1\\": "packages/D3VSOFT/Theme1/src"
         },
         "classmap": [
             "database/seeds",
