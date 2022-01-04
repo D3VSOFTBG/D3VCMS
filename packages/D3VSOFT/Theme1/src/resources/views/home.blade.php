@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>D3VCMS</title>
-</head>
-<body>
+@section('page_name'){{ 'Home' }}@endsection
 
-</body>
-</html>
+@include('theme1::inc.header')
+
+<h1>D3VCMS</h1>
+
+@include('theme1::inc.footer')
