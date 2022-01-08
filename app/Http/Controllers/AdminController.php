@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\Rules\NotNull;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -147,10 +149,22 @@ class AdminController extends Controller
     {
         // General
         $request->validate([
-            'title' => 'required',
-            'app_url' => 'required',
-            'title_seperator' => 'required',
-            'app_env' => 'required',
+            'title' => [
+                'required',
+                new NotNull,
+            ],
+            'app_url' => [
+                'required',
+                new NotNull,
+            ],
+            'title_seperator' => [
+                'required',
+                new NotNull,
+            ],
+            'app_env' => [
+                'required',
+                new NotNull,
+            ],
         ]);
         if($request->title != env('TITLE'))
         {
@@ -170,13 +184,34 @@ class AdminController extends Controller
         }
         // Mail
         $request->validate([
-            'mail_driver' => 'required',
-            'mail_host' => 'required',
-            'mail_port' => 'required',
-            'mail_username' => 'required',
-            'mail_password' => 'required',
-            'mail_encryption' => 'required',
-            'mail_from_address' => 'required',
+            'mail_driver' => [
+                'required',
+                new NotNull,
+            ],
+            'mail_host' => [
+                'required',
+                new NotNull,
+            ],
+            'mail_port' => [
+                'required',
+                new NotNull,
+            ],
+            'mail_username' => [
+                'required',
+                new NotNull,
+            ],
+            'mail_password' => [
+                'required',
+                new NotNull,
+            ],
+            'mail_encryption' => [
+                'required',
+                new NotNull,
+            ],
+            'mail_from_address' => [
+                'required',
+                new NotNull,
+            ],
         ]);
         if($request->mail_host != env('MAIL_HOST'))
         {
@@ -206,7 +241,10 @@ class AdminController extends Controller
         if(isset($request->favicon))
         {
             $request->validate([
-                'favicon' => 'required|image|max:2048',
+                'favicon' => [
+                    'required|image|max:2048',
+                    new NotNull,
+                ],
             ]);
             // image
             $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->favicon->extension();
@@ -216,7 +254,10 @@ class AdminController extends Controller
         if(isset($request->logo))
         {
             $request->validate([
-                'logo' => 'required|image|max:2048',
+                'logo' => [
+                    'required|image|max:2048',
+                    new NotNull,
+                ],
             ]);
             // image
             $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->logo->extension();
