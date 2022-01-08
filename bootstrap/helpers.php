@@ -26,3 +26,14 @@ function role_name($id)
         return Role::where('id', $id)->get('name')->pluck('name')->first();
     }
 }
+function email_verified_at($date)
+{
+    if(empty($date))
+    {
+        return 'No';
+    }
+    else
+    {
+        return 'Yes';
+    }
+}
