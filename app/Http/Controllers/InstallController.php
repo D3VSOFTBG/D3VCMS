@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Rules\NotNull;
 use Illuminate\Http\Request;
+use PDO;
+use PDOException;
 
 class InstallController extends Controller
 {
@@ -39,10 +41,20 @@ class InstallController extends Controller
                 new NotNull,
             ],
             'db_password' => [
-                'required',
                 new NotNull,
             ],
         ]);
+
+        try
+        {
+            $connection = new PDO("mysql:host=$request->db_host;dbname=$request->db_database", $request->db_username, $request->db_password);
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        catch (PDOException $e)
+        {
+            return back()->withErrors(['Connection', $e->getMessage()]);
+        }
+
         return back();
     }
 }
