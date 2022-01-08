@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InstallController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,7 @@ Auth::routes(['verify' => true]);
 
 Route::middleware(['install'])->group(function ()
 {
-    Route::get('/install', [AdminController::class, 'install_get'])->name('install');
-    Route::post('/install', [AdminController::class, 'install_post'])->name('install');
+    Route::get('/install', [InstallController::class, 'install_get'])->name('install');
+    Route::get('/install/1', [InstallController::class, 'install_1_get'])->name('install_1');
+    Route::post('/install', [InstallController::class, 'install_post'])->name('install');
 });
