@@ -277,8 +277,18 @@ class AdminController extends Controller
             return view('install');
         }
     }
-    function install_post()
+    function install_post(Request $request)
     {
-
+        $request->validate([
+            'DB_CONNECTION' => [
+                'required',
+                new NotNull,
+            ],
+            'DB_HOST' => [
+                'required',
+                new NotNull,
+            ],
+        ]);
+        return back();
     }
 }

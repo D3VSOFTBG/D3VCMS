@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="{{asset('/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('/dist/css/adminlte.min.css')}}">
+    @if ($errors->any())
+    <script>
+        alert('{{ implode(' ', $errors->all(':message')) }}');
+    </script>
+    @endif
 </head>
 
 <body class="hold-transition login-page">
@@ -28,6 +33,7 @@
                 <p class="text-center">Fill in all the blanks.</p>
 
                 <form action="{{route('install')}}" method="post">
+                    @csrf
                     <div class="form-group mb-3">
                         <label for="DB_CONNECTION">DB_CONNECTION</label>
                         <select class="form-control" name="DB_CONNECTION" id="DB_CONNECTION">
