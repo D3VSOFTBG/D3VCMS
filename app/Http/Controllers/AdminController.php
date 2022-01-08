@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -140,5 +142,91 @@ class AdminController extends Controller
         $data = [];
 
         return view('admin.pages.settings', $data);
+    }
+    function settings_post(Request $request)
+    {
+        // General
+        $request->validate([
+            'title' => 'required',
+            'app_url' => 'required',
+            'title_seperator' => 'required',
+            'app_env' => 'required',
+        ]);
+        if($request->title != env('TITLE'))
+        {
+            env_update('TITLE', $request->title);
+        }
+        if($request->app_url != env('APP_URL'))
+        {
+            env_update('APP_URL', $request->app_url);
+        }
+        if($request->title_seperator != env('TITLE_SEPERATOR'))
+        {
+            env_update('TITLE_SEPERATOR', $request->title_seperator);
+        }
+        if($request->app_env != env('APP_ENV'))
+        {
+            env_update('APP_ENV', $request->app_env);
+        }
+        // Mail
+        $request->validate([
+            'mail_driver' => 'required',
+            'mail_host' => 'required',
+            'mail_port' => 'required',
+            'mail_username' => 'required',
+            'mail_password' => 'required',
+            'mail_encryption' => 'required',
+            'mail_from_address' => 'required',
+        ]);
+        if($request->mail_host != env('MAIL_HOST'))
+        {
+            env_update('MAIL_HOST', $request->mail_host);
+        }
+        if($request->mail_port != env('MAIL_PORT'))
+        {
+            env_update('MAIL_PORT', $request->mail_port);
+        }
+        if($request->mail_username != env('MAIL_USERNAME'))
+        {
+            env_update('MAIL_USERNAME', $request->mail_username);
+        }
+        if($request->mail_password != env('MAIL_PASSWORD'))
+        {
+            env_update('MAIL_PASSWORD', $request->mail_password);
+        }
+        if($request->mail_encryption != env('MAIL_ENCRYPTION'))
+        {
+            env_update('MAIL_ENCRYPTION', $request->mail_encryption);
+        }
+        if($request->mail_from_address != env('MAIL_ENCRYPTION'))
+        {
+            env_update('MAIL_FROM_ADDRESS', $request->mail_from_address);
+        }
+        // Images
+        if(isset($request->favicon))
+        {
+            $request->validate([
+                'favicon' => 'required|image|max:2048',
+            ]);
+            // image
+            $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->favicon->extension();
+            $request->favicon->move(public_path('/storage/img/global/'), $new_image_name);
+            env_update('FAVICON', $new_image_name);
+        }
+        if(isset($request->logo))
+        {
+            $request->validate([
+                'logo' => 'required|image|max:2048',
+            ]);
+            // image
+            $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->logo->extension();
+            $request->logo->move(public_path('/storage/img/global/'), $new_image_name);
+            env_update('LOGO', $new_image_name);
+        }
+
+        Artisan::call('cache:clear');
+        Cache::flush();
+
+        return back();
     }
 }
