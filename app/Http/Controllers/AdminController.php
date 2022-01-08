@@ -270,4 +270,15 @@ class AdminController extends Controller
 
         return back();
     }
+    function install_get()
+    {
+        if(file_exists(base_path('.env')))
+        {
+            return view('install');
+        }
+    }
+    function install_post()
+    {
+
+    }
 }

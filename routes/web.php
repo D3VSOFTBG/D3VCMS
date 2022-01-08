@@ -31,3 +31,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
 });
 
 Auth::routes(['verify' => true]);
+
+Route::get('/install', [AdminController::class, 'install_get'])->name('install');
+Route::post('/install', [AdminController::class, 'install_post'])->name('install');
+
