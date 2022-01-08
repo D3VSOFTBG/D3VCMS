@@ -99,6 +99,23 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item @if (str_contains(Request::url(), 'pages')) menu-open @endif">
+                            <a href="#" class="nav-link @if (str_contains(Request::url(), 'pages')) active @endif">
+                                <i class="nav-icon fas fa-store"></i>
+                                <p>
+                                    Pages
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('admin.pages.users')}}" class="nav-link @if (Route::currentRouteName() == 'admin.shop.products') active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Users</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

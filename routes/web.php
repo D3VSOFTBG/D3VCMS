@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 Route::middleware(['auth', 'admin'])->group(function ()
 {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('/admin/pages/users', [AdminController::class, 'users'])->name('admin.pages.users');
 });
 
 Auth::routes(['verify' => true]);
