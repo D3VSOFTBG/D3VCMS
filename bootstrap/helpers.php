@@ -19,7 +19,7 @@ function role_name($id)
 {
     if(empty($id))
     {
-        return 'Customer';
+        return 'Member';
     }
     else
     {
