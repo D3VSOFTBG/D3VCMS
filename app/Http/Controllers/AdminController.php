@@ -39,7 +39,7 @@ class AdminController extends Controller
         $user = User::findOrFail($request->id);
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'role' => 'required|integer',
         ]);
 
@@ -48,7 +48,7 @@ class AdminController extends Controller
         if($request->email != $user->email)
         {
             $request->validate([
-                'email' => 'required|email|unique:users',
+                'email' => 'required|string|email|max:255|unique:users',
             ]);
             $user->email = $request->email;
         }
@@ -82,10 +82,10 @@ class AdminController extends Controller
     function user_create(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
             'role' => 'required',
-            'password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);
 

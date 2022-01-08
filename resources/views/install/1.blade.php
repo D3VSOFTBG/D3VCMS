@@ -6,7 +6,7 @@
             <a href="#" class="h1"><b>D3VCMS</b> Install</a>
         </div>
         <div class="card-body">
-            <p class="text-center">Fill in all the blanks.</p>
+            <p class="text-center">Database details.</p>
 
             <form action="{{route('install.1')}}" method="post">
                 @csrf
