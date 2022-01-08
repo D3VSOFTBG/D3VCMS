@@ -25,7 +25,7 @@ class NotNull implements Rule
      */
     public function passes($attribute, $value)
     {
-        return strtolower($value) == 'null';
+        return strtolower($value) != 'null';
     }
 
     /**
