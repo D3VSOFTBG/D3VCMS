@@ -24,4 +24,9 @@ class AdminController extends Controller
 
         return view('admin.pages.users', $data);
     }
+    function user_delete(Request $request)
+    {
+        User::findOrFail($request->id)->delete();
+        return back();
+    }
 }
