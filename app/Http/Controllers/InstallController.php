@@ -63,8 +63,6 @@ class InstallController extends Controller
 
             $request->session()->put('install_database', $install_database);
 
-            Log::info($request->session()->get('install_database'));
-
             return redirect(route('install.2'));
         }
         catch (PDOException $e)
