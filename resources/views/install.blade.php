@@ -35,30 +35,30 @@
                 <form action="{{route('install')}}" method="post">
                     @csrf
                     <div class="form-group mb-3">
-                        <label for="DB_CONNECTION">DB_CONNECTION</label>
-                        <select class="form-control" name="DB_CONNECTION" id="DB_CONNECTION">
+                        <label for="db_connection">DB_CONNECTION</label>
+                        <select class="form-control" name="db_connection" id="db_connection">
                             <option value="mysql">MySQL</option>
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="DB_HOST">DB_HOST</label>
-                        <input type="text" class="form-control" id="DB_HOST" placeholder="DB_HOST">
+                        <label for="db_host">DB_HOST</label>
+                        <input type="text" class="form-control" id="db_host" placeholder="DB_HOST">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="DB_PORT">DB_PORT</label>
-                        <input type="text" class="form-control" id="DB_PORT" placeholder="DB_PORT">
+                        <label for="db_port">DB_PORT</label>
+                        <input type="text" class="form-control" id="db_port" placeholder="DB_PORT">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="DB_DATABASE">DB_DATABASE</label>
-                        <input type="text" class="form-control" id="DB_DATABASE" placeholder="DB_DATABASE">
+                        <label for="db_database">DB_DATABASE</label>
+                        <input type="text" class="form-control" id="db_database" placeholder="DB_DATABASE">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="DB_USERNAME">DB_USERNAME</label>
-                        <input type="text" class="form-control" id="DB_USERNAME" placeholder="DB_USERNAME">
+                        <label for="db_username">DB_USERNAME</label>
+                        <input type="text" class="form-control" id="db_username" placeholder="DB_USERNAME">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="DB_PASSWORD">DB_PASSWORD</label>
-                        <input type="text" class="form-control" id="DB_PASSWORD" placeholder="DB_PASSWORD">
+                        <label for="db_password">DB_PASSWORD</label>
+                        <input type="text" class="form-control" id="db_password" placeholder="DB_PASSWORD">
                     </div>
                     <div class="row">
                         <div class="col-12">

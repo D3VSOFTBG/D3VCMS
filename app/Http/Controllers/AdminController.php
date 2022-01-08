@@ -280,11 +280,27 @@ class AdminController extends Controller
     function install_post(Request $request)
     {
         $request->validate([
-            'DB_CONNECTION' => [
+            'db_connection' => [
                 'required',
                 new NotNull,
             ],
-            'DB_HOST' => [
+            'db_host' => [
+                'required',
+                new NotNull,
+            ],
+            'db_port' => [
+                'required',
+                new NotNull,
+            ],
+            'db_database' => [
+                'required',
+                new NotNull,
+            ],
+            'db_username' => [
+                'required',
+                new NotNull,
+            ],
+            'db_password' => [
                 'required',
                 new NotNull,
             ],
