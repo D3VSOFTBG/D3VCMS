@@ -11,6 +11,13 @@
 |
 */
 
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+Route::middleware(['auth'])->group(function ()
+{
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+});
 
 Auth::routes(['verify' => true]);
