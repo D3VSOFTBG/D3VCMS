@@ -21,6 +21,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
     Route::get('/admin/pages/users', [AdminController::class, 'users'])->name('admin.pages.users');
     Route::get('/admin/pages/packages', [AdminController::class, 'packages'])->name('admin.pages.packages');
+    Route::get('/admin/pages/settings', [AdminController::class, 'settings_get'])->name('admin.pages.settings');
 
     // POST
     Route::post('/admin/pages/users/delete', [AdminController::class, 'user_delete'])->name('admin.pages.users.delete');

@@ -135,10 +135,10 @@ class AdminController extends Controller
 
         return view('admin.pages.packages', $data);
     }
-}
-function settings_get()
-{
-    $data = [];
+    function settings_get()
+    {
+        $data = [];
 
-    return view('admin.pages.settings', $data);
+        return view('admin.pages.settings', $data);
+    }
 }

@@ -120,6 +120,12 @@
                                         <p>Packages</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.pages.settings')}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.settings') active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Settings</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
