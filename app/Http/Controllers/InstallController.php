@@ -50,6 +50,7 @@ class InstallController extends Controller
             $connection = new PDO("mysql:host=$request->db_host;dbname=$request->db_database", $request->db_username, $request->db_password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $request->session()->put('install', 2);
+            return redirect(route('install.2'));
         }
         catch (PDOException $e)
         {

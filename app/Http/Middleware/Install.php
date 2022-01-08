@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 
 class Install
 {
@@ -19,6 +21,11 @@ class Install
         // {
         //     return abort(403);
         // }
+
+        if($request->session()->get('install') < 2 && Route::currentRouteName() == 'install.2')
+        {
+            return redirect(route('install.1'));
+        }
         return $next($request);
     }
 }
