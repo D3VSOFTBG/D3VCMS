@@ -49,12 +49,21 @@ class InstallController extends Controller
         {
             $connection = new PDO("mysql:host=$request->db_host;dbname=$request->db_database", $request->db_username, $request->db_password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $request->session()->put('install', 2);
         }
         catch (PDOException $e)
         {
-            return back()->withErrors(['Connection', $e->getMessage()]);
+            return back()->withErrors(['DB:', $e->getMessage()]);
         }
 
+        return back();
+    }
+    function install_2_get()
+    {
+        return view('install.2');
+    }
+    function install_2_post()
+    {
         return back();
     }
 }

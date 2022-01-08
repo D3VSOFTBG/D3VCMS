@@ -35,7 +35,12 @@ Auth::routes(['verify' => true]);
 
 Route::middleware(['install'])->group(function ()
 {
+    // GET
     Route::get('/install', [InstallController::class, 'install_get'])->name('install');
     Route::get('/install/1', [InstallController::class, 'install_1_get'])->name('install.1');
+    Route::get('/install/2', [InstallController::class, 'install_2_get'])->name('install.2');
+
+    // POST
     Route::post('/install/1', [InstallController::class, 'install_1_post'])->name('install.1');
+    Route::post('/install/2', [InstallController::class, 'install_2_post'])->name('install.2');
 });
