@@ -57,12 +57,12 @@
 
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-code"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Orders</span>
+                            <span class="info-box-text">Developer</span>
                             <span class="info-box-number">
-                                {{-- {{count($orders)}} --}}
+                                <a href="{{developer()}}">{{developer()}}</a>
                             </span>
                         </div>
                         <!-- /.info-box-content -->
