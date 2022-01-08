@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Rules\NotNull;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use PDO;
 use PDOException;
@@ -76,8 +78,32 @@ class InstallController extends Controller
     {
         return view('install.2');
     }
-    function install_2_post()
+    function install_2_post(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
+        ]);
+
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = 1;
+
+        if($request->password == $request->password_confirmation)
+        {
+            $user->password = Hash::make($request->password);
+        }
+        else
+        {
+            return back()->withErrors('The passwords do not match.');
+        }
+
+        $user->save();
+
         return back();
     }
 }

@@ -6,7 +6,7 @@
             <a href="#" class="h1"><b>D3VCMS</b> Install</a>
         </div>
         <div class="card-body">
-            <p class="text-center">Create admin account.</p>
+            <p class="text-center">Create an administrator account.</p>
 
             <form action="{{route('install.2')}}" method="post">
                 @csrf
