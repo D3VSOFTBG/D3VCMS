@@ -75,4 +75,42 @@ class AdminController extends Controller
 
         return back();
     }
+    function user_create(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'role' => 'required',
+            'password' => 'required',
+            'password_confirmation' => 'required',
+        ]);
+
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if($request->role == 0)
+        {
+            $user->role = NULL;
+        }
+        else
+        {
+            Role::findOrFail($request->role);
+            $user->role = $request->role;
+        }
+
+        if($request->password == $request->password_confirmation)
+        {
+            $user->password = Hash::make($request->password);
+        }
+        else
+        {
+            return back()->withErrors('The passwords do not match.');
+        }
+
+        $user->save();
+
+        return back();
+    }
 }
