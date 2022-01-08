@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rules\NotNull;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use PDO;
 use PDOException;
 
@@ -50,6 +51,20 @@ class InstallController extends Controller
             $connection = new PDO("mysql:host=$request->db_host;dbname=$request->db_database", $request->db_username, $request->db_password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $request->session()->put('install', 2);
+
+            $install_database = [
+                'db_connection' => $request->db_connection,
+                'db_host' => $request->db_host,
+                'db_port' => $request->db_port,
+                'db_database' => $request->db_database,
+                'db_username' => $request->db_username,
+                'db_password' => $request->db_password,
+            ];
+
+            $request->session()->put('install_database', $install_database);
+
+            Log::info($request->session()->get('install_database'));
+
             return redirect(route('install.2'));
         }
         catch (PDOException $e)
