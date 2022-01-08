@@ -27,6 +27,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
     Route::post('/admin/pages/users/delete', [AdminController::class, 'user_delete'])->name('admin.pages.users.delete');
     Route::post('/admin/pages/users/edit', [AdminController::class, 'user_edit'])->name('admin.pages.users.edit');
     Route::post('/admin/pages/users/create', [AdminController::class, 'user_create'])->name('admin.pages.users.create');
+    Route::post('/admin/pages/settings', [AdminController::class, 'settings_post'])->name('admin.pages.settings');
 });
 
 Auth::routes(['verify' => true]);
