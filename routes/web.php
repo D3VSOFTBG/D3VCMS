@@ -20,6 +20,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
     // GET
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
     Route::get('/admin/pages/users', [AdminController::class, 'users'])->name('admin.pages.users');
+    Route::get('/admin/pages/packages', [AdminController::class, 'packages'])->name('admin.pages.packages');
 
     // POST
     Route::post('/admin/pages/users/delete', [AdminController::class, 'user_delete'])->name('admin.pages.users.delete');

@@ -37,3 +37,7 @@ function email_verified_at($date)
         return 'Yes';
     }
 }
+function package_path()
+{
+    return base_path() . '/packages';
+}
