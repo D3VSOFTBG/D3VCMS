@@ -109,7 +109,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('admin.pages.users')}}" class="nav-link @if (Route::currentRouteName() == 'admin.shop.products') active @endif">
+                                    <a href="{{route('admin.pages.users')}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.users') active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Users</p>
                                     </a>
