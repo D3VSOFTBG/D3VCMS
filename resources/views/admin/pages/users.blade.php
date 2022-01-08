@@ -51,7 +51,7 @@
                                                 Role</label>
                                             <select name="role" class="custom-select">
                                                 <option value="NULL" selected>
-                                                Customer
+                                                Member
                                                 </option>
                                                 @foreach ($roles as $role)
                                                 <option value="{{$role->id}}">
@@ -190,7 +190,7 @@
                                                                             Role</label>
                                                                         <select name="role" class="custom-select">
                                                                             <option value="0" @if ($user->role == NULL) selected @endif>
-                                                                            Customer
+                                                                            Member
                                                                             </option>
                                                                             @foreach ($roles as $role)
                                                                             <option value="{{$role->id}}" @if ($user->role == $role->id) selected @endif>
