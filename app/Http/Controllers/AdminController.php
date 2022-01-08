@@ -272,39 +272,42 @@ class AdminController extends Controller
     }
     function install_get()
     {
-        if(file_exists(base_path('.env')))
-        {
+        // if(!file_exists(base_path('.env')))
+        // {
             return view('install');
-        }
+        // }
     }
     function install_post(Request $request)
     {
-        $request->validate([
-            'db_connection' => [
-                'required',
-                new NotNull,
-            ],
-            'db_host' => [
-                'required',
-                new NotNull,
-            ],
-            'db_port' => [
-                'required',
-                new NotNull,
-            ],
-            'db_database' => [
-                'required',
-                new NotNull,
-            ],
-            'db_username' => [
-                'required',
-                new NotNull,
-            ],
-            'db_password' => [
-                'required',
-                new NotNull,
-            ],
-        ]);
-        return back();
+        // if(!file_exists(base_path('.env')))
+        // {
+            $request->validate([
+                'db_connection' => [
+                    'required',
+                    new NotNull,
+                ],
+                'db_host' => [
+                    'required',
+                    new NotNull,
+                ],
+                'db_port' => [
+                    'required',
+                    new NotNull,
+                ],
+                'db_database' => [
+                    'required',
+                    new NotNull,
+                ],
+                'db_username' => [
+                    'required',
+                    new NotNull,
+                ],
+                'db_password' => [
+                    'required',
+                    new NotNull,
+                ],
+            ]);
+            return back();
+        // }
     }
 }
