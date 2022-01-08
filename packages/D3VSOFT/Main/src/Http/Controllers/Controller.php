@@ -1,6 +1,6 @@
 <?php
 
-namespace D3VSOFT\Theme1\Http\Controllers;
+namespace D3VSOFT\Main\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

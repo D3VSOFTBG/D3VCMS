@@ -1,7 +1,7 @@
 @section('page_name'){{ 'Home' }}@endsection
 
-@include('theme1::inc.header')
+@include('main::inc.header')
 
 <h1>D3VCMS</h1>
 
-@include('theme1::inc.footer')
+@include('main::inc.footer')

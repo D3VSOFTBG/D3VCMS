@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        D3VSOFT\Theme1\Providers\Theme1ServiceProvider::class,
+        D3VSOFT\Main\Providers\MainServiceProvider::class,
 
     ],
 
