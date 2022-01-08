@@ -9,13 +9,13 @@ class InstallController extends Controller
 {
     function install_get()
     {
-        return redirect(route('install_1'));
+        return redirect(route('install.1'));
     }
     function install_1_get()
     {
         return view('install.1');
     }
-    function install_post(Request $request)
+    function install_1_post(Request $request)
     {
         $request->validate([
             'db_connection' => [
