@@ -7,6 +7,7 @@ use App\Rules\Banned;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use PDO;
@@ -50,41 +51,27 @@ class InstallController extends Controller
             ],
         ]);
 
+        $ok = false;
+
         try
         {
             $connection = new PDO("mysql:host=$request->db_host;dbname=$request->db_database", $request->db_username, $request->db_password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $ok = true;
+        }
+        catch (PDOException $e)
+        {
+            return back()->withErrors(['DB:', $e->getMessage()]);
+        }
 
-            $request->session()->put('install', 2);
-
-            $install_database = [
-                'db_connection' => $request->db_connection,
-                'db_host' => $request->db_host,
-                'db_port' => $request->db_port,
-                'db_database' => $request->db_database,
-                'db_username' => $request->db_username,
-                'db_password' => $request->db_password,
-            ];
-
-            $request->session()->put('install_database', $install_database);
-
-            // .ENV
-            $file = base_path('.env.example');
-            $newfile = base_path('.env');
-
-            if (!copy($file, $newfile))
-            {
-                abort(403);
-            }
-
-            $db = session()->get('install_database');
-
-            env_update('DB_CONNECTION', $db['db_connection']);
-            env_update('DB_HOST', $db['db_host']);
-            env_update('DB_PORT', $db['db_port']);
-            env_update('DB_DATABASE', $db['db_database']);
-            env_update('DB_USERNAME', $db['db_username']);
-            env_update('DB_PASSWORD', $db['db_password']);
+        if($ok)
+        {
+            env_update('DB_CONNECTION', $request->db_connection);
+            env_update('DB_HOST', $request->db_host);
+            env_update('DB_PORT', $request->db_port);
+            env_update('DB_DATABASE', $request->db_database);
+            env_update('DB_USERNAME', $request->db_username);
+            env_update('DB_PASSWORD', $request->db_password);
 
             // Migrate
             Artisan::call('migrate:fresh', ['--force' => true]);
@@ -93,12 +80,10 @@ class InstallController extends Controller
 
             return redirect(route('install.2'));
         }
-        catch (PDOException $e)
+        else
         {
-            return back()->withErrors(['DB:', $e->getMessage()]);
+            return back();
         }
-
-        return back();
     }
     function install_2_get()
     {
@@ -129,8 +114,11 @@ class InstallController extends Controller
 
         $user->save();
 
-        // Delete old file
-        unlink(base_path('.env.example'));
+        if(file_exists(base_path('.lock')))
+        {
+            // Create lock file
+            File::put(base_path('.lock'), 1);
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

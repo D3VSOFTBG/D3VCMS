@@ -17,13 +17,9 @@ class Install
      */
     public function handle($request, Closure $next)
     {
-        if(!file_exists(base_path('.env.example')))
+        if(file_exists(base_path('.lock')))
         {
             return abort(403);
-        }
-        if($request->session()->get('install') < 2 && Route::currentRouteName() == 'install.2')
-        {
-            return redirect(route('install.1'));
         }
         return $next($request);
     }
