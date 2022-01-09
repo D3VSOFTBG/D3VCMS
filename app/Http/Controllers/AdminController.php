@@ -213,6 +213,10 @@ class AdminController extends Controller
                 new Banned,
             ],
         ]);
+        if($request->mail_driver != env('MAIL_DRIVER'))
+        {
+            env_update('MAIL_DRIVER', $request->mail_driver);
+        }
         if($request->mail_host != env('MAIL_HOST'))
         {
             env_update('MAIL_HOST', $request->mail_host);
