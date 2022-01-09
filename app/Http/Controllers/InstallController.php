@@ -6,6 +6,7 @@ use App\Providers\RouteServiceProvider;
 use App\Rules\Banned;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use PDO;
@@ -84,6 +85,9 @@ class InstallController extends Controller
             env_update('DB_DATABASE', $db['db_database']);
             env_update('DB_USERNAME', $db['db_username']);
             env_update('DB_PASSWORD', $db['db_password']);
+
+            // Migrate
+            Artisan::call('migrate', ['--force' => true]);
 
             return redirect(route('install.2'));
         }
