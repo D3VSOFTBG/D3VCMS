@@ -114,7 +114,7 @@ class InstallController extends Controller
 
         $user->save();
 
-        if(file_exists(base_path('.lock')))
+        if(!file_exists(base_path('.lock')))
         {
             // Create lock file
             File::put(base_path('.lock'), 1);
