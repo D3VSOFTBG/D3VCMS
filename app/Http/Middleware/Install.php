@@ -17,7 +17,7 @@ class Install
      */
     public function handle($request, Closure $next)
     {
-        // if(file_exists(base_path('.env')))
+        // if(file_exists(base_path('.env.example')))
         // {
         //     return abort(403);
         // }

@@ -14,7 +14,11 @@
 
     <main class="px-3">
         <h1>{{env('TITLE')}}</h1>
-        <p class="lead">Welcome to my website.</p>
+        @if (file_exists(base_path('.env.example')))
+            <p class="lead">Go to <a href="{{Request::url()}}/install">{{Request::url()}}/install</a></p>
+        @else
+            <p class="lead">Welcome to my website.</p>
+        @endif
         <p class="lead">
             <a href="https://d3vcms.d3vsoft.com" class="btn btn-lg btn-secondary fw-bold border-white bg-white">D3VCMS</a>
         </p>

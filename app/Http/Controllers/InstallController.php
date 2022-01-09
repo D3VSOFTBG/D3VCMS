@@ -106,10 +106,9 @@ class InstallController extends Controller
         $user->save();
 
         // .ENV
-        $file = base_path('.env.example');
-        $newfile = base_path('.env');
+        $renamed = rename(base_path('.env.example'), base_path('.env'));
 
-        if (!copy($file, $newfile))
+        if (!$renamed)
         {
             abort(403);
         }
