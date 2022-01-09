@@ -107,11 +107,21 @@ class InstallController extends Controller
 
         // .ENV
         $file = base_path('.env.example');
-        $newfile = base_path('.env.example2');
+        $newfile = base_path('.env');
 
-        if (!copy($file, $newfile)) {
+        if (!copy($file, $newfile))
+        {
             abort(403);
         }
+
+        $db = session()->get('install_database');
+
+        env_update('DB_CONNECTION', $db['db_connection']);
+        env_update('DB_HOST', $db['db_host']);
+        env_update('DB_PORT', $db['db_port']);
+        env_update('DB_DATABASE', $db['db_database']);
+        env_update('DB_USERNAME', $db['db_username']);
+        env_update('DB_PASSWORD', $db['db_password']);
 
         return redirect(RouteServiceProvider::HOME);
     }

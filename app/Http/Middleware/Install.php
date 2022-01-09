@@ -21,7 +21,6 @@ class Install
         // {
         //     return abort(403);
         // }
-
         if($request->session()->get('install') < 2 && Route::currentRouteName() == 'install.2')
         {
             return redirect(route('install.1'));
