@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Role;
-use App\Rules\NotNull;
+use App\Rules\Banned;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -151,19 +151,19 @@ class AdminController extends Controller
         $request->validate([
             'title' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'app_url' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'title_seperator' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'app_env' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
         ]);
         if($request->title != env('TITLE'))
@@ -186,31 +186,31 @@ class AdminController extends Controller
         $request->validate([
             'mail_driver' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'mail_host' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'mail_port' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'mail_username' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'mail_password' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'mail_encryption' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'mail_from_address' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
         ]);
         if($request->mail_host != env('MAIL_HOST'))
@@ -243,7 +243,7 @@ class AdminController extends Controller
             $request->validate([
                 'favicon' => [
                     'required|image|max:2048',
-                    new NotNull,
+                    new Banned,
                 ],
             ]);
             // image
@@ -256,7 +256,7 @@ class AdminController extends Controller
             $request->validate([
                 'logo' => [
                     'required|image|max:2048',
-                    new NotNull,
+                    new Banned,
                 ],
             ]);
             // image

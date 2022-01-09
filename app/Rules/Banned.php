@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class NotNull implements Rule
+class Banned implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,7 +25,14 @@ class NotNull implements Rule
      */
     public function passes($attribute, $value)
     {
-        return strtolower($value) != 'null';
+        if(strtolower($value) == 'null' || str_contains($value, "\\"))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /**
@@ -35,6 +42,6 @@ class NotNull implements Rule
      */
     public function message()
     {
-        return 'The :attribute cannot use `null` keyword.';
+        return 'The :attribute cannot use banned keywords.';
     }
 }

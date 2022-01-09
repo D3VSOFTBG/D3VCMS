@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Rules\NotNull;
+use App\Providers\RouteServiceProvider;
+use App\Rules\Banned;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,26 +26,26 @@ class InstallController extends Controller
         $request->validate([
             'db_connection' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'db_host' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'db_port' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'db_database' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'db_username' => [
                 'required',
-                new NotNull,
+                new Banned,
             ],
             'db_password' => [
-                new NotNull,
+                new Banned,
             ],
         ]);
 
@@ -52,6 +53,7 @@ class InstallController extends Controller
         {
             $connection = new PDO("mysql:host=$request->db_host;dbname=$request->db_database", $request->db_username, $request->db_password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             $request->session()->put('install', 2);
 
             $install_database = [
@@ -88,7 +90,6 @@ class InstallController extends Controller
         ]);
 
         $user = new User();
-
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = 1;
@@ -104,6 +105,14 @@ class InstallController extends Controller
 
         $user->save();
 
-        return back();
+        // .ENV
+        $file = base_path('.env.example');
+        $newfile = base_path('.env.example2');
+
+        if (!copy($file, $newfile)) {
+            abort(403);
+        }
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }
