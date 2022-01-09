@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="db_password">DB_PASSWORD</label>
-                    <input type="text" class="form-control" name="db_password" id="db_password" placeholder="DB_PASSWORD">
+                    <input type="password" class="form-control" name="db_password" id="db_password" placeholder="DB_PASSWORD">
                 </div>
                 <div class="row">
                     <div class="col-12">
