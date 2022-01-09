@@ -87,7 +87,9 @@ class InstallController extends Controller
             env_update('DB_PASSWORD', $db['db_password']);
 
             // Migrate
-            Artisan::call('migrate', ['--force' => true]);
+            Artisan::call('migrate:fresh', ['--force' => true]);
+            // Seed
+            Artisan::call('db:seed', ['--force' => true]);
 
             return redirect(route('install.2'));
         }
