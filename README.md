@@ -6,7 +6,7 @@ D3VCMS is a CMS developed by software company D3VSOFT.
 
 - PHP 7.4
 - Laravel 6
-- Bootstrap 5
+- Bootstrap
 
 ## Security Vulnerabilities
 
