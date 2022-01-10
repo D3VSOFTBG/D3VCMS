@@ -165,6 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
+        D3VSOFT\Main\Providers\MainServiceProvider::class,
+        Mavinoo\Batch\BatchServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -174,7 +176,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        D3VSOFT\Main\Providers\MainServiceProvider::class,
 
     ],
 
@@ -226,6 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Batch' => Mavinoo\Batch\BatchFacade::class,
 
     ],
 

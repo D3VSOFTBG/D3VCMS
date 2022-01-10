@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^1.0"
+        "laravel/ui": "^1.0",
+        "mavinoo/laravel-batch": "^2.3"
     },
     "require-dev": {
         "facade/ignition": "^1.16.15",
