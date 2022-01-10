@@ -53,7 +53,7 @@ function env_update($key, $value)
         ));
     }
 }
-function title()
+function setting($name)
 {
-    return Setting::where('name', 'TITLE')->pluck('value')->first();
+    return Setting::where('name', $name)->pluck('value')->first();
 }
