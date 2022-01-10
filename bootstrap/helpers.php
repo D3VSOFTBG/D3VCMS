@@ -1,6 +1,7 @@
 <?php
 
 use App\Role;
+use App\Setting;
 use App\User;
 
 function d3vcms_version()
@@ -51,4 +52,8 @@ function env_update($key, $value)
             $key . '=' . '"' . env($key) . '"', $key . '=' . '"' .$value. '"', file_get_contents($path)
         ));
     }
+}
+function title()
+{
+    return Setting::where('name', 'TITLE')->pluck('value')->first();
 }
