@@ -57,6 +57,10 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="#" class="dropdown-item">
+                            <i class="fas fa-user"></i> &nbsp; Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
                             <i class="fas fa-user-tag"></i> &nbsp; {{role_name(Auth::user()->role)}}
                         </a>
                         <div class="dropdown-divider"></div>
