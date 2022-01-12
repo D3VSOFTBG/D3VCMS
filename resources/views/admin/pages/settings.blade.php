@@ -34,7 +34,7 @@
                                     <label for="title">
                                         <span class="text-danger">*</span>
                                         Title</label>
-                                    <input name="title" id="title" type="text" class="form-control" placeholder="Title" value="{{env('TITLE')}}" required>
+                                    <input name="title" id="title" type="text" class="form-control" placeholder="Title" value="{{$settings['TITLE']}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="app_url">

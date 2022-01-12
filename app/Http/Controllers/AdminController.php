@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\Rules\Banned;
+use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Mavinoo\Batch\Batch;
 
 class AdminController extends Controller
 {
@@ -141,7 +143,18 @@ class AdminController extends Controller
     }
     function settings_get()
     {
-        $data = [];
+        $settings_old = Setting::all();
+
+        $settings = [];
+
+        foreach($settings_old as $setting)
+        {
+            $settings[$setting['name']] = $setting['value'];
+        }
+
+        $data = [
+            'settings' => $settings,
+        ];
 
         return view('admin.pages.settings', $data);
     }
@@ -166,10 +179,20 @@ class AdminController extends Controller
                 new Banned,
             ],
         ]);
-        if($request->title != env('TITLE'))
-        {
-            env_update('TITLE', $request->title);
-        }
+
+        $setting = new Setting();
+
+        $values = [
+            [
+                'name' => 'TITLE',
+                'value' => $request->title,
+            ],
+        ];
+
+        $index = 'name';
+
+        batch()->update($setting, $values, $index);
+
         if($request->app_url != env('APP_URL'))
         {
             env_update('APP_URL', $request->app_url);

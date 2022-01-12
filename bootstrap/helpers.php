@@ -35,7 +35,7 @@ function email_verified_at($date)
     }
     else
     {
-        return 'Yes';
+        return $date;
     }
 }
 function package_path()
