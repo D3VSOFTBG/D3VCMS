@@ -166,45 +166,70 @@ class AdminController extends Controller
                 'required',
                 new Banned,
             ],
-            'app_url' => [
-                'required',
-                new Banned,
-            ],
             'title_seperator' => [
-                'required',
-                new Banned,
-            ],
-            'app_env' => [
                 'required',
                 new Banned,
             ],
         ]);
 
+
         $setting = new Setting();
 
-        $values = [
+        $setting_values = [
             [
                 'name' => 'TITLE',
                 'value' => $request->title,
+            ],
+            [
+                'name' => 'TITLE_SEPERATOR',
+                'value' => $request->title_seperator,
             ],
         ];
 
         $index = 'name';
 
-        batch()->update($setting, $values, $index);
+        // Images
+        if(isset($request->favicon))
+        {
+            // $request->validate([
+            //     'favicon' => [
+            //         'required|image|max:2048',
+            //         new Banned,
+            //     ],
+            // ]);
+            // image
+            $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->favicon->extension();
+            $request->favicon->move(public_path('/storage/img/global/'), $new_image_name);
 
-        if($request->app_url != env('APP_URL'))
-        {
-            env_update('APP_URL', $request->app_url);
+            $array_push = [
+                'name' => 'FAVICON',
+                'value' => $new_image_name,
+            ];
+
+            array_push($setting_values, $array_push);
         }
-        if($request->title_seperator != env('TITLE_SEPERATOR'))
+        if(isset($request->logo))
         {
-            env_update('TITLE_SEPERATOR', $request->title_seperator);
+            $request->validate([
+                'logo' => [
+                    'required|image|max:2048',
+                    new Banned,
+                ],
+            ]);
+            // image
+            $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->logo->extension();
+            $request->logo->move(public_path('/storage/img/global/'), $new_image_name);
+
+            $array_push = [
+                'name' => 'LOGO',
+                'value' => $request->logo,
+            ];
+
+            array_push($setting_values, $array_push);
         }
-        if($request->app_env != env('APP_ENV'))
-        {
-            env_update('APP_ENV', $request->app_env);
-        }
+
+        batch()->update($setting, $setting_values, $index);
+
         // Mail
         $request->validate([
             'mail_driver' => [
@@ -263,33 +288,6 @@ class AdminController extends Controller
         if($request->mail_from_address != env('MAIL_ENCRYPTION'))
         {
             env_update('MAIL_FROM_ADDRESS', $request->mail_from_address);
-        }
-        // Images
-        if(isset($request->favicon))
-        {
-            $request->validate([
-                'favicon' => [
-                    'required|image|max:2048',
-                    new Banned,
-                ],
-            ]);
-            // image
-            $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->favicon->extension();
-            $request->favicon->move(public_path('/storage/img/global/'), $new_image_name);
-            env_update('FAVICON', $new_image_name);
-        }
-        if(isset($request->logo))
-        {
-            $request->validate([
-                'logo' => [
-                    'required|image|max:2048',
-                    new Banned,
-                ],
-            ]);
-            // image
-            $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->logo->extension();
-            $request->logo->move(public_path('/storage/img/global/'), $new_image_name);
-            env_update('LOGO', $new_image_name);
         }
 
         Artisan::call('cache:clear');

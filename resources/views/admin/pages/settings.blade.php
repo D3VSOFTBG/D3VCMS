@@ -47,7 +47,7 @@
                                         <span class="text-danger">*</span>
                                         Title Seperator</label>
                                     <input name="title_seperator" id="title_seperator" type="text" class="form-control"
-                                        placeholder="Title Seperator" value="{{env('TITLE_SEPERATOR')}}" required>
+                                        placeholder="Title Seperator" value="{{$settings['TITLE_SEPERATOR']}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>
@@ -73,7 +73,7 @@
                                             Favicon</label>
                                         <div class="card-body">
                                             <p class="card-text">
-                                                <img class="responsive" src="{{asset('/storage/img/global/' . env('FAVICON'))}}" alt="Image">
+                                                <img class="responsive" src="{{asset('/storage/img/global/' . $settings['FAVICON'])}}" alt="Image">
                                             </p>
                                             <input name="favicon" type="file" class="form-control-file" id="favicon" accept="image/*">
                                         </div>
@@ -85,7 +85,7 @@
                                             Logo</label>
                                         <div class="card-body">
                                             <p class="card-text">
-                                                <img class="responsive" src="{{asset('/storage/img/global/' . env('LOGO'))}}" alt="Image">
+                                                <img class="responsive" src="{{asset('/storage/img/global/' . $settings['LOGO'])}}" alt="Image">
                                             </p>
                                             <input name="logo" type="file" class="form-control-file" id="logo" accept="image/*">
                                         </div>
