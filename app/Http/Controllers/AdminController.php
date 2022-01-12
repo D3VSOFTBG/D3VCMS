@@ -191,12 +191,10 @@ class AdminController extends Controller
         // Images
         if(isset($request->favicon))
         {
-            // $request->validate([
-            //     'favicon' => [
-            //         'required|image|max:2048',
-            //         new Banned,
-            //     ],
-            // ]);
+            $request->validate([
+                'favicon' => 'required|image|max:2048',
+            ]);
+
             // image
             $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->favicon->extension();
             $request->favicon->move(public_path('/storage/img/global/'), $new_image_name);
@@ -211,10 +209,7 @@ class AdminController extends Controller
         if(isset($request->logo))
         {
             $request->validate([
-                'logo' => [
-                    'required|image|max:2048',
-                    new Banned,
-                ],
+                'logo' => 'required|image|max:2048',
             ]);
             // image
             $new_image_name = md5(uniqid(rand(), true)) . '.' . $request->logo->extension();
@@ -222,7 +217,7 @@ class AdminController extends Controller
 
             $array_push = [
                 'name' => 'LOGO',
-                'value' => $request->logo,
+                'value' => $new_image_name,
             ];
 
             array_push($setting_values, $array_push);
