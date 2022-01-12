@@ -172,7 +172,6 @@ class AdminController extends Controller
             ],
         ]);
 
-
         $setting = new Setting();
 
         $setting_values = [
@@ -186,7 +185,7 @@ class AdminController extends Controller
             ],
         ];
 
-        $index = 'name';
+        $setting_index = 'name';
 
         // Images
         if(isset($request->favicon))
@@ -223,7 +222,7 @@ class AdminController extends Controller
             array_push($setting_values, $array_push);
         }
 
-        batch()->update($setting, $setting_values, $index);
+        batch()->update($setting, $setting_values, $setting_index);
 
         // Mail
         $request->validate([

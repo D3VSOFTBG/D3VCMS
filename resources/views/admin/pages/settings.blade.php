@@ -37,12 +37,6 @@
                                     <input name="title" id="title" type="text" class="form-control" placeholder="Title" value="{{$settings['TITLE']}}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="app_url">
-                                        <span class="text-danger">*</span>
-                                        URL</label>
-                                    <input name="app_url" id="app_url" type="text" class="form-control" placeholder="URL" value="{{env('APP_URL')}}" required>
-                                </div>
-                                <div class="form-group">
                                     <label for="title_seperator">
                                         <span class="text-danger">*</span>
                                         Title Seperator</label>
