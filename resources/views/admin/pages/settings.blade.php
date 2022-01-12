@@ -146,7 +146,7 @@
                                     <label for="mail_from_address">
                                         <span class="text-danger">*</span>
                                         Mail From Address</label>
-                                    <input name="mail_from_address" id="mail_from_address" type="text" class="form-control"
+                                    <input name="mail_from_address" id="mail_from_address" type="email" class="form-control"
                                         placeholder="Mail From Address" value="{{env('MAIL_FROM_ADDRESS')}}" required>
                                 </div>
                             </div>
