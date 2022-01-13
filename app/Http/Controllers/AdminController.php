@@ -364,4 +364,14 @@ class AdminController extends Controller
 
         return back();
     }
+    function cache_get()
+    {
+        return view('admin.pages.cache');
+    }
+    function cache_post()
+    {
+        Artisan::call('optimize:clear');
+        Cache::flush();
+        return back();
+    }
 }

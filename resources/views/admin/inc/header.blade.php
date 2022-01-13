@@ -183,6 +183,12 @@
                                         <p>Settings</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.pages.cache')}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.cache') active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cache</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item @if (str_contains(Request::url(), 'other')) menu-open @endif">
