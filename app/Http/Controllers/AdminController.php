@@ -23,7 +23,16 @@ class AdminController extends Controller
     function users()
     {
         $users = User::orderBy('id', 'DESC')->paginate(setting('PAGINATION_ADMIN'));
-        $roles = Role::all();
+
+        if(Cache::has('ROLES'))
+        {
+            $roles = Cache::get('ROLES');
+        }
+        else
+        {
+            Cache::forever('ROLES', Role::all());
+            $roles = Cache::get('ROLES');
+        }
 
         $data = [
             'users' => $users,
