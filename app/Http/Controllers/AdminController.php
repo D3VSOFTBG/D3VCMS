@@ -8,6 +8,7 @@ use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -65,7 +66,7 @@ class AdminController extends Controller
             $user->role = $request->role;
         }
 
-        if(!empty($request->password) && !empty($request->password_confirmation))
+        if(isset($request->password) && isset($request->password_confirmation))
         {
             if($request->password == $request->password_confirmation)
             {
@@ -288,5 +289,31 @@ class AdminController extends Controller
         Cache::flush();
 
         return back();
+    }
+    function profile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+        ]);
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        if($request->email != $user->email)
+        {
+            $request->validate([
+                'email' => 'required|string|email|max:255|unique:users',
+            ]);
+            $user->email = $request->email;
+        }
+
+        if(isset($request->password))
+        {
+
+        }
+        if(isset($request->password_confirmation))
+        {
+
+        }
     }
 }
