@@ -4,6 +4,7 @@ use App\Role;
 use App\Setting;
 use App\User;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 function d3vcms_version()
 {
@@ -19,13 +20,20 @@ function developer()
 }
 function role_name($id)
 {
-    if(empty($id))
+    if(Cache::has('ROLES'))
     {
-        return 'Member';
+        if(empty(Cache::get('ROLES')[$id - 1]->name))
+        {
+            return 'Member';
+        }
+        else
+        {
+            return Cache::get('ROLES')[$id - 1]->name;
+        }
     }
     else
     {
-        return Role::where('id', $id)->get('name')->pluck('name')->first();
+        Cache::forever('ROLES', Role::all());
     }
 }
 function email_verified_at($date)

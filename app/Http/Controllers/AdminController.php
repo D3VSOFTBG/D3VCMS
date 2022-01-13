@@ -22,7 +22,7 @@ class AdminController extends Controller
     }
     function users()
     {
-        $users = User::orderBy('id', 'DESC')->paginate(env('PAGINATION_ADMIN'));
+        $users = User::orderBy('id', 'DESC')->paginate(setting('PAGINATION_ADMIN'));
         $roles = Role::all();
 
         $data = [
