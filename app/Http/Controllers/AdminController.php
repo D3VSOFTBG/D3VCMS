@@ -68,6 +68,10 @@ class AdminController extends Controller
 
         if(isset($request->password) && isset($request->password_confirmation))
         {
+            $request->validate([
+                'password' => 'required|string|min:8|confirmed',
+                'password_confirmation' => 'required',
+            ]);
             if($request->password == $request->password_confirmation)
             {
                 $user->password = Hash::make($request->password);
@@ -307,13 +311,18 @@ class AdminController extends Controller
             $user->email = $request->email;
         }
 
-        if(isset($request->password))
+        if(isset($request->password) && isset($request->password_confirmation))
         {
-
+            if($request->password == $request->password_confirmation)
+            {
+                $user->password = Hash::make($request->password);
+            }
+            else
+            {
+                return back()->withErrors('The passwords do not match.');
+            }
         }
-        if(isset($request->password_confirmation))
-        {
 
-        }
+        $user->save();
     }
 }
