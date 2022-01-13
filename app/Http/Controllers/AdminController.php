@@ -313,6 +313,10 @@ class AdminController extends Controller
 
         if(isset($request->password) && isset($request->password_confirmation))
         {
+            $request->validate([
+                'password' => 'required|string|min:8|confirmed',
+                'password_confirmation' => 'required',
+            ]);
             if($request->password == $request->password_confirmation)
             {
                 $user->password = Hash::make($request->password);
