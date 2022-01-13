@@ -97,7 +97,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">There are {{user_count()}} users.</h3>
+                            <h3 class="card-title">There are {{$users->total()}} users.</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
