@@ -196,7 +196,7 @@
                             <ul class="nav nav-treeview">
                                 @foreach (admin_menus() as $menu)
                                     <li class="nav-item">
-                                        <a href="{{url($menu->link)}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.users') active @endif">
+                                        <a href="{{url($menu->link)}}" class="nav-link @if (str_contains(Request::url(), $menu->link)) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>{{$menu->name}}</p>
                                         </a>
