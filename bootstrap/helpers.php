@@ -3,6 +3,7 @@
 use App\Role;
 use App\Setting;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 
 function d3vcms_version()
 {
@@ -55,5 +56,13 @@ function env_update($key, $value)
 }
 function setting($name)
 {
-    return Setting::where('name', $name)->pluck('value')->first();
+    if (Cache::has($name))
+    {
+        return Cache::get($name);
+    }
+    else
+    {
+        Cache::forever($name, Setting::where('name', $name)->pluck('value')->first());
+        return Cache::get($name);
+    }
 }
