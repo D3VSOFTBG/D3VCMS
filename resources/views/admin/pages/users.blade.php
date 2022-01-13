@@ -35,14 +35,14 @@
                                             <label for="name">
                                                 <span class="text-danger">*</span>
                                                 Name</label>
-                                            <input name="name" type="text" class="form-control"
+                                            <input name="name" id="name" type="text" class="form-control"
                                                 placeholder="Name" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">
                                                 <span class="text-danger">*</span>
                                                 Email</label>
-                                            <input name="email" type="email" class="form-control"
+                                            <input name="email" id="email" type="email" class="form-control"
                                                 placeholder="Email" required>
                                         </div>
                                         <div class="form-group">
@@ -64,14 +64,14 @@
                                             <label for="password">
                                                 <span class="text-danger">*</span>
                                                 Password</label>
-                                            <input name="password" type="password" class="form-control"
+                                            <input name="password" id="password" type="password" class="form-control"
                                                 placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="password_confirmation">
                                                 <span class="text-danger">*</span>
                                                 Password Confirmation</label>
-                                            <input name="password_confirmation" type="password" class="form-control"
+                                            <input name="password_confirmation" id="password_confirmation" type="password" class="form-control"
                                                 placeholder="Password Confirmation" required>
                                         </div>
                                     </div>

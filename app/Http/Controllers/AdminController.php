@@ -303,6 +303,8 @@ class AdminController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
 
+        $user->name = $request->name;
+
         if($request->email != $user->email)
         {
             $request->validate([
@@ -328,5 +330,7 @@ class AdminController extends Controller
         }
 
         $user->save();
+
+        return back();
     }
 }

@@ -32,50 +32,53 @@
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
     <!-- Profile -->
-    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name">
-                            <span class="text-danger">*</span>
-                            Name</label>
-                        <input name="name" type="text" class="form-control"
-                            placeholder="Name" value="{{Auth::user()->name}}" required>
+    <form action="{{route('profile')}}" method="post">
+        @csrf
+
+        <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="email">
-                            <span class="text-danger">*</span>
-                            Email</label>
-                        <input name="email" type="email" class="form-control"
-                            placeholder="Email" value="{{Auth::user()->email}}" required>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">
+                                <span class="text-danger">*</span>
+                                Name</label>
+                            <input name="name" id="name" type="text" class="form-control" placeholder="Name"
+                                value="{{Auth::user()->name}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                <span class="text-danger">*</span>
+                                Email</label>
+                            <input name="email" id="email" type="email" class="form-control" placeholder="Email"
+                                value="{{Auth::user()->email}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">
+                                Password</label>
+                            <input name="password" id="password" type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirmation">
+                                Password Confirmation</label>
+                            <input name="password_confirmation" id="password_confirmation" type="password" class="form-control"
+                                placeholder="Password Confirmation">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="password">
-                            Password</label>
-                        <input name="password" type="password" class="form-control"
-                            placeholder="Password">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-                    <div class="form-group">
-                        <label for="password_confirmation">
-                            Password Confirmation</label>
-                        <input name="password_confirmation" type="password" class="form-control"
-                            placeholder="Password Confirmation">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!-- /Profile -->
 
     <div class="wrapper">
