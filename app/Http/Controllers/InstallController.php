@@ -77,6 +77,8 @@ class InstallController extends Controller
             Artisan::call('migrate:fresh', ['--force' => true]);
             // Seed
             Artisan::call('db:seed', ['--force' => true]);
+            // Generate App key
+            Artisan::call('key:generate', ['--force' => true]);
 
             return redirect(route('install.2'));
         }

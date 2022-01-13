@@ -11,7 +11,6 @@
             </nav>
         </div>
     </header>
-
     <main class="px-3">
         <h1>{{setting('TITLE')}}</h1>
         @if (file_exists(base_path('.env.example')))
