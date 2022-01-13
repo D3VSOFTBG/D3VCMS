@@ -23,7 +23,7 @@
                 <div class="col">
                     <div class="card card-warning card-outline">
                         <div class="card-header">
-                            <h5 class="m-0">Cache</h5>
+                            <h5 class="m-0">Clear entire cache.</h5>
                         </div>
                         <div class="card-body">
                             <form action="{{route('admin.pages.cache')}}" method="post">
