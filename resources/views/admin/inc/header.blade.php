@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>D3VCMS {{env('TITLE_SEPERATOR')}} @yield('page_name')</title>
+    <title>D3VCMS {{setting('TITLE_SEPERATOR')}} @yield('page_name')</title>
     <link rel="icon" type="image/x-icon" href="{{asset('/storage/img/global/' . env('FAVICON'))}}">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
