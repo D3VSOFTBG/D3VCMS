@@ -1,5 +1,6 @@
 <?php
 
+use App\AdminMenu;
 use App\Role;
 use App\Setting;
 use App\User;
@@ -8,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 function d3vcms_version()
 {
-    return 1;
+    return 1.1;
 }
 function user_count()
 {
@@ -73,4 +74,8 @@ function setting($name)
         Cache::forever($name, Setting::where('name', $name)->pluck('value')->first());
         return Cache::get($name);
     }
+}
+function admin_menus()
+{
+    return AdminMenu::all();
 }

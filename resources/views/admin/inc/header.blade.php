@@ -185,6 +185,25 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item @if (str_contains(Request::url(), 'other')) menu-open @endif">
+                            <a href="#" class="nav-link @if (str_contains(Request::url(), 'other')) active @endif">
+                                <i class="nav-icon fas fa-question-circle"></i>
+                                <p>
+                                    Other
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @foreach (admin_menus() as $menu)
+                                    <li class="nav-item">
+                                        <a href="{{url($menu->link)}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.users') active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{$menu->name}}</p>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
