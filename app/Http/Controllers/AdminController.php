@@ -262,7 +262,22 @@ class AdminController extends Controller
         ]);
         if($request->mail_driver != env('MAIL_DRIVER'))
         {
-            env_update('MAIL_DRIVER', $request->mail_driver);
+            $drivers = [
+                'smtp',
+                'sendmail',
+                'mailgun',
+                'ses',
+                'log',
+                'array',
+            ];
+            if(in_array($request->mail_driver, $drivers))
+            {
+                env_update('MAIL_DRIVER', $request->mail_driver);
+            }
+            else
+            {
+                abort(403);
+            }
         }
         if($request->mail_host != env('MAIL_HOST'))
         {
@@ -286,7 +301,14 @@ class AdminController extends Controller
         }
         if($request->mail_from_address != env('MAIL_ENCRYPTION'))
         {
-            env_update('MAIL_FROM_ADDRESS', $request->mail_from_address);
+            if(filter_var($request->mail_from_address, FILTER_VALIDATE_EMAIL))
+            {
+                env_update('MAIL_FROM_ADDRESS', $request->mail_from_address);
+            }
+            else
+            {
+                abort(403);
+            }
         }
 
         Artisan::call('cache:clear');

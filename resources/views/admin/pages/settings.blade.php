@@ -98,8 +98,14 @@
                                     <label for="mail_driver">
                                         <span class="text-danger">*</span>
                                         Mail Driver</label>
-                                    <input name="mail_driver" id="mail_driver" type="text" class="form-control"
-                                        placeholder="Mail Driver" value="{{env('MAIL_DRIVER')}}" required>
+                                    <select name="mail_driver" class="custom-select">
+                                        <option value="smtp" @if(env('MAIL_DRIVER') == 'smtp') selected @endif>SMTP</option>
+                                        <option value="sendmail" @if(env('MAIL_DRIVER') == 'sendmail') selected @endif>Sendmail</option>
+                                        <option value="mailgun" @if(env('MAIL_DRIVER') == 'mailgun') selected @endif>Mailgun</option>
+                                        <option value="ses" @if(env('MAIL_DRIVER') == 'ses') selected @endif>Ses</option>
+                                        <option value="log" @if(env('MAIL_DRIVER') == 'log') selected @endif>Log</option>
+                                        <option value="array" @if(env('MAIL_DRIVER') == 'array') selected @endif>Array</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="mail_host">
