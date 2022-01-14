@@ -13,6 +13,8 @@
 
 use App\Http\Controllers\Admin\CacheController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PackagesController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstallController;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +25,8 @@ Route::middleware(['auth', 'admin'])->group(function ()
     // GET
     Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admin');
     Route::get('/admin/pages/users', [AdminController::class, 'users'])->name('admin.pages.users');
-    Route::get('/admin/pages/packages', [AdminController::class, 'packages'])->name('admin.pages.packages');
-    Route::get('/admin/pages/settings', [AdminController::class, 'settings_get'])->name('admin.pages.settings');
+    Route::get('/admin/pages/packages', [PackagesController::class, 'packages'])->name('admin.pages.packages');
+    Route::get('/admin/pages/settings', [SettingsController::class, 'get'])->name('admin.pages.settings');
     Route::get('/admin/pages/cache', [CacheController::class, 'get'])->name('admin.pages.cache');
 
     // POST
@@ -32,7 +34,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
     Route::post('/admin/pages/users/delete', [AdminController::class, 'user_delete'])->name('admin.pages.users.delete');
     Route::post('/admin/pages/users/edit', [AdminController::class, 'user_edit'])->name('admin.pages.users.edit');
     Route::post('/admin/pages/users/create', [AdminController::class, 'user_create'])->name('admin.pages.users.create');
-    Route::post('/admin/pages/settings', [AdminController::class, 'settings_post'])->name('admin.pages.settings');
+    Route::post('/admin/pages/settings', [SettingsController::class, 'post'])->name('admin.pages.settings');
     Route::post('/admin/pages/cache', [CacheController::class, 'post'])->name('admin.pages.cache');
 });
 
