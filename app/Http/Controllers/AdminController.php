@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\Rules\Banned;
+use App\Rules\TrueOrFalse;
 use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
@@ -178,11 +179,13 @@ class AdminController extends Controller
         $request->validate([
             'title' => [
                 'required',
-                new Banned,
             ],
             'title_seperator' => [
                 'required',
-                new Banned,
+            ],
+            'user_registration' => [
+                'required',
+                new TrueOrFalse,
             ],
         ]);
 
@@ -196,6 +199,10 @@ class AdminController extends Controller
             [
                 'name' => 'TITLE_SEPERATOR',
                 'value' => $request->title_seperator,
+            ],
+            [
+                'name' => 'USER_REGISTRATION',
+                'value' => $request->user_registration,
             ],
         ];
 

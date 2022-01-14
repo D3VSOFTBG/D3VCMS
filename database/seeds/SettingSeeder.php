@@ -33,6 +33,10 @@ class SettingSeeder extends Seeder
                 'name' => 'PAGINATION_ADMIN',
                 'value' => '20',
             ],
+            [
+                'name' => 'USER_REGISTRATION',
+                'value' => 1,
+            ],
         ]);
     }
 }

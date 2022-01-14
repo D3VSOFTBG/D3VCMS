@@ -54,6 +54,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card card-warning card-outline">
+                            <div class="card-header">
+                                <h5 class="m-0">Users</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>
+                                        <span class="text-danger">*</span>
+                                        User registration</label>
+                                    <select name="user_registration" class="custom-select">
+                                        <option value="1" @if(setting('USER_REGISTRATION') == 1) selected @endif>Yes</option>
+                                        <option value="0" @if(setting('USER_REGISTRATION') == 0) selected @endif>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="card card-warning card-outline">
