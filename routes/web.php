@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\CacheController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstallController;
@@ -24,7 +25,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
     Route::get('/admin/pages/users', [AdminController::class, 'users'])->name('admin.pages.users');
     Route::get('/admin/pages/packages', [AdminController::class, 'packages'])->name('admin.pages.packages');
     Route::get('/admin/pages/settings', [AdminController::class, 'settings_get'])->name('admin.pages.settings');
-    Route::get('/admin/pages/cache', [AdminController::class, 'cache_get'])->name('admin.pages.cache');
+    Route::get('/admin/pages/cache', [CacheController::class, 'get'])->name('admin.pages.cache');
 
     // POST
     Route::post('/profile', [AdminController::class, 'profile'])->name('profile');
@@ -32,7 +33,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
     Route::post('/admin/pages/users/edit', [AdminController::class, 'user_edit'])->name('admin.pages.users.edit');
     Route::post('/admin/pages/users/create', [AdminController::class, 'user_create'])->name('admin.pages.users.create');
     Route::post('/admin/pages/settings', [AdminController::class, 'settings_post'])->name('admin.pages.settings');
-    Route::post('/admin/pages/cache', [AdminController::class, 'cache_post'])->name('admin.pages.cache');
+    Route::post('/admin/pages/cache', [CacheController::class, 'post'])->name('admin.pages.cache');
 });
 
 Auth::routes(['verify' => true]);
