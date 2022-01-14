@@ -17,7 +17,6 @@ use App\Http\Controllers\Admin\PackagesController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstallController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
