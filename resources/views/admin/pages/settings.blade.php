@@ -133,7 +133,7 @@
                                         <span class="text-danger">*</span>
                                         Mail Password</label>
                                     <input name="mail_password" id="mail_password" type="password" class="form-control"
-                                        placeholder="Mail Password" value="{{env('MAIL_PASSWORD')}}" required>
+                                        placeholder="Mail Password" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label for="mail_encryption">

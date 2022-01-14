@@ -257,7 +257,6 @@ class AdminController extends Controller
                 new Banned,
             ],
             'mail_password' => [
-                'required',
                 new Banned,
             ],
             'mail_encryption' => [
@@ -300,7 +299,7 @@ class AdminController extends Controller
         {
             env_update('MAIL_USERNAME', $request->mail_username);
         }
-        if($request->mail_password != env('MAIL_PASSWORD'))
+        if(isset($request->mail_password) && $request->mail_password != env('MAIL_PASSWORD'))
         {
             env_update('MAIL_PASSWORD', $request->mail_password);
         }

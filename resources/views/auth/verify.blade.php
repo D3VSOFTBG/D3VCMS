@@ -6,7 +6,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="{{route('home')}}" class="h1">{{env('TITLE')}}</a>
+            <a href="{{route('home')}}" class="h1">{{setting('TITLE')}}</a>
         </div>
         <div class="card-body">
             @if (session('resent'))
