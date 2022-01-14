@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstallController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 Route::middleware(['auth', 'admin'])->group(function ()
 {
     // GET
-    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admin');
     Route::get('/admin/pages/users', [AdminController::class, 'users'])->name('admin.pages.users');
     Route::get('/admin/pages/packages', [AdminController::class, 'packages'])->name('admin.pages.packages');
     Route::get('/admin/pages/settings', [AdminController::class, 'settings_get'])->name('admin.pages.settings');

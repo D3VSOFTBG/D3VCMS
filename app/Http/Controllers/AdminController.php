@@ -17,10 +17,6 @@ use Mavinoo\Batch\Batch;
 
 class AdminController extends Controller
 {
-    function dashboard()
-    {
-        return view('admin.dashboard');
-    }
     function users()
     {
         $users = User::orderBy('id', 'DESC')->paginate(setting('PAGINATION_ADMIN'));
