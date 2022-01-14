@@ -38,7 +38,14 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        if(setting('USER_REGISTRATION') != 0)
+        {
+            $this->middleware('guest');
+        }
+        else
+        {
+            abort(403);
+        }
     }
 
     /**
