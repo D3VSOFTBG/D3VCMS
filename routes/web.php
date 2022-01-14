@@ -14,7 +14,9 @@
 use App\Http\Controllers\Admin\CacheController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PackagesController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstallController;
 use Illuminate\Support\Facades\Route;
@@ -24,16 +26,16 @@ Route::middleware(['auth', 'admin'])->group(function ()
 {
     // GET
     Route::get('/admin', [DashboardController::class, 'dashboard'])->name('admin');
-    Route::get('/admin/pages/users', [AdminController::class, 'users'])->name('admin.pages.users');
+    Route::get('/admin/pages/users', [UsersController::class, 'users'])->name('admin.pages.users');
     Route::get('/admin/pages/packages', [PackagesController::class, 'packages'])->name('admin.pages.packages');
     Route::get('/admin/pages/settings', [SettingsController::class, 'get'])->name('admin.pages.settings');
     Route::get('/admin/pages/cache', [CacheController::class, 'get'])->name('admin.pages.cache');
 
     // POST
-    Route::post('/profile', [AdminController::class, 'profile'])->name('profile');
-    Route::post('/admin/pages/users/delete', [AdminController::class, 'user_delete'])->name('admin.pages.users.delete');
-    Route::post('/admin/pages/users/edit', [AdminController::class, 'user_edit'])->name('admin.pages.users.edit');
-    Route::post('/admin/pages/users/create', [AdminController::class, 'user_create'])->name('admin.pages.users.create');
+    Route::post('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('/admin/pages/users/delete', [UsersController::class, 'delete'])->name('admin.pages.users.delete');
+    Route::post('/admin/pages/users/edit', [UsersController::class, 'edit'])->name('admin.pages.users.edit');
+    Route::post('/admin/pages/users/create', [UsersController::class, 'create'])->name('admin.pages.users.create');
     Route::post('/admin/pages/settings', [SettingsController::class, 'post'])->name('admin.pages.settings');
     Route::post('/admin/pages/cache', [CacheController::class, 'post'])->name('admin.pages.cache');
 });
