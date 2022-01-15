@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 function d3vcms_version()
 {
-    return 1.3;
+    return 1.4;
 }
 function user_count()
 {
