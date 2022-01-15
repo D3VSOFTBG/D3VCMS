@@ -182,6 +182,7 @@ class SettingsController extends Controller
             }
         }
 
+        Artisan::call('cache:clear');
         Cache::flush();
 
         return back();
