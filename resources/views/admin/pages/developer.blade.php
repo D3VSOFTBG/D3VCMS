@@ -1,4 +1,4 @@
-@section('page_name'){{ 'Cache' }}@endsection
+@section('page_name'){{ 'Developer' }}@endsection
 
 @include('admin.inc.header')
 
@@ -26,7 +26,7 @@
                             <h5 class="m-0">Clear entire cache.</h5>
                         </div>
                         <div class="card-body">
-                            <form action="{{route('admin.pages.cache')}}" method="post">
+                            <form action="{{route('admin.pages.developer')}}" method="post">
                                 @csrf
                                 <button class="btn btn-primary w-100">Clear</button>
                             </form>

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 
-class CacheController extends Controller
+class DeveloperController extends Controller
 {
     function get()
     {
-        return view('admin.pages.cache');
+        return view('admin.pages.developer');
     }
     function post()
     {

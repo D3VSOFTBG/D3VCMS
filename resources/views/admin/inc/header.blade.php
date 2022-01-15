@@ -184,9 +184,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.pages.cache')}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.cache') active @endif">
+                                    <a href="{{route('admin.pages.developer')}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.developer') active @endif">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Cache</p>
+                                        <p>Developer</p>
                                     </a>
                                 </li>
                             </ul>
