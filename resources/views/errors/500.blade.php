@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>500</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta name="robots" content="noindex">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"

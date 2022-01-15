@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>404</title>
+    <title>403</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta name="robots" content="noindex">
     <!-- Google Font: Source Sans Pro -->
@@ -22,10 +22,10 @@
             <td>
                 <!-- Main content -->
                 <section class="content text-center">
-                    <h1 class="text-warning" style="font-size: 100px;"> 404</h1>
-                    <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</h3>
+                    <h1 class="text-danger" style="font-size: 100px;"> 403</h1>
+                    <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Forbidden.</h3>
 
-                    <p class="text-center">We could not find the page you were looking for. Meanwhile, you may
+                    <p class="text-center">This page is forbidden. Meanwhile, you may
                         @if (str_contains(Request::url(), 'admin'))
                         <a href="{{route('admin')}}">return to dashboard</a>.
                         @else
