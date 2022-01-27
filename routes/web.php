@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DeveloperController;
 use App\Http\Controllers\Admin\PackagesController;
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'admin'])->group(function ()
     Route::get('/admin/pages/settings', [SettingsController::class, 'get'])->name('admin.pages.settings');
     Route::get('/admin/pages/developer', [DeveloperController::class, 'get'])->name('admin.pages.developer');
     Route::get('/admin/pages/posts', [PostsController::class, 'admin_get'])->name('admin.pages.posts');
+    Route::get('/admin/pages/posts/{post_id}/comments', [CommentsController::class, 'admin_get']);
 
     // POST
     Route::post('/profile', [ProfileController::class, 'profile'])->name('profile');

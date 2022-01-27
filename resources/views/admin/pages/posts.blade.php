@@ -13,7 +13,7 @@
                         <a data-toggle="modal" data-target="#create">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
                                 title="Create">
-                                <i class="fas fa-user-plus"></i>
+                                <i class="fas fa-plus-circle"></i>
                             </button>
                         </a>
                     </h1>
@@ -111,7 +111,7 @@
                                                         <a data-toggle="modal" data-target="#edit{{$post->id}}">
                                                             <button type="button" class="btn btn-success"
                                                                 data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                <i class="fas fa-user-edit"></i></button>
+                                                                <i class="fas fa-edit"></i></button>
                                                         </a>
 
                                                         <!-- Modal -->
@@ -154,6 +154,9 @@
                                                             </div>
                                                         </div>
                                                     </form>
+                                                    <a class="btn btn-info" href="{{Request::url() . "/$post->id/comments"}}" data-toggle="tooltip"
+                                                    data-placement="top" title="Comments">
+                                                    <i class="fas fa-comments"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
