@@ -46,28 +46,28 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">
+                            <label for="profile_name">
                                 <span class="text-danger">*</span>
                                 Name</label>
-                            <input name="name" id="name" type="text" class="form-control" placeholder="Name"
+                            <input name="name" id="profile_name" type="text" class="form-control" placeholder="Name"
                                 value="{{Auth::user()->name}}" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">
+                            <label for="profile_email">
                                 <span class="text-danger">*</span>
                                 Email</label>
-                            <input name="email" id="email" type="email" class="form-control" placeholder="Email"
+                            <input name="email" id="profile_email" type="email" class="form-control" placeholder="Email"
                                 value="{{Auth::user()->email}}" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">
+                            <label for="profile_password">
                                 Password</label>
-                            <input name="password" id="password" type="password" class="form-control" placeholder="Password">
+                            <input name="password" id="profile_password" type="password" class="form-control" placeholder="Password">
                         </div>
                         <div class="form-group">
-                            <label for="password_confirmation">
+                            <label for="profile_password_confirmation">
                                 Password Confirmation</label>
-                            <input name="password_confirmation" id="password_confirmation" type="password" class="form-control"
+                            <input name="password_confirmation" id="profile_password_confirmation" type="password" class="form-control"
                                 placeholder="Password Confirmation">
                         </div>
                     </div>
@@ -187,6 +187,12 @@
                                     <a href="{{route('admin.pages.developer')}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.developer') active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Developer</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.pages.posts')}}" class="nav-link @if (Route::currentRouteName() == 'admin.pages.posts') active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Posts</p>
                                     </a>
                                 </li>
                             </ul>

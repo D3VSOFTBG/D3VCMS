@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h1 class="m-0">@yield('page_name')
-                        <a data-toggle="modal" data-target="#create_user">
+                        <a data-toggle="modal" data-target="#create">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
                                 title="Create">
                                 <i class="fas fa-user-plus"></i>
@@ -20,7 +20,7 @@
                     <form action="{{route('admin.pages.users.create')}}" method="post" class="d-inline">
                         @csrf
                         <!-- Modal -->
-                        <div class="modal fade" id="create_user" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
@@ -138,7 +138,7 @@
                                             <td class="align-middle">
                                                 <form action="{{route('admin.pages.users.delete')}}" method="post"
                                                     class="d-inline"
-                                                    onclick="if(!confirm('Delete ({{$user->name}}).')){return false;}">
+                                                    onclick="if(!confirm('Delete ({{$user->id}}).')){return false;}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                     <button class="btn btn-danger" data-toggle="tooltip"
@@ -147,20 +147,20 @@
                                                 </form>
                                                 <form action="{{route('admin.pages.users.edit')}}" method="post" class="d-inline">
                                                     @csrf
-                                                    <a data-toggle="modal" data-target="#edit_user_{{$user->id}}">
+                                                    <a data-toggle="modal" data-target="#edit{{$user->id}}">
                                                         <button type="button" class="btn btn-success"
                                                             data-toggle="tooltip" data-placement="top" title="Edit">
                                                             <i class="fas fa-user-edit"></i></button>
                                                     </a>
 
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="edit_user_{{$user->id}}" tabindex="-1"
+                                                    <div class="modal fade" id="edit{{$user->id}}" tabindex="-1"
                                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">Edit
-                                                                        <strong>{{$user->name}}</strong>.</h5>
+                                                                        <strong>#{{$user->id}}</strong></h5>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -169,18 +169,18 @@
                                                                 <div class="modal-body">
                                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                                     <div class="form-group">
-                                                                        <label for="name">
+                                                                        <label for="edit_name">
                                                                             <span class="text-danger">*</span>
                                                                             Name</label>
-                                                                        <input name="name" id="name" type="text" class="form-control"
+                                                                        <input name="name" id="edit_name" type="text" class="form-control"
                                                                             placeholder="Name"
                                                                             value="{{$user->name}}" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="email">
+                                                                        <label for="edit_email">
                                                                             <span class="text-danger">*</span>
                                                                             Email</label>
-                                                                        <input name="email" id="email" type="email" class="form-control"
+                                                                        <input name="email" id="edit_email" type="email" class="form-control"
                                                                             placeholder="Email"
                                                                             value="{{$user->email}}" required>
                                                                     </div>
@@ -200,15 +200,15 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="password">
+                                                                        <label for="edit_password">
                                                                             Password</label>
-                                                                        <input name="password" id="password" type="password" class="form-control"
+                                                                        <input name="password" id="edit_password" type="password" class="form-control"
                                                                             placeholder="Password">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="password_confirmation">
+                                                                        <label for="edit_password_confirmation">
                                                                             Password Confirmation</label>
-                                                                        <input name="password_confirmation" id="password_confirmation" type="password" class="form-control"
+                                                                        <input name="password_confirmation" id="edit_password_confirmation" type="password" class="form-control"
                                                                             placeholder="Password Confirmation">
                                                                     </div>
                                                                 </div>

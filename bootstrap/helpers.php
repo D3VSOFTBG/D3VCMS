@@ -79,3 +79,7 @@ function admin_menus()
 {
     return AdminMenu::all();
 }
+function upload_path($path)
+{
+    return storage_path('app/public' . $path);
+}
