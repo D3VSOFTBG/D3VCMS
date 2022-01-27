@@ -15,6 +15,7 @@ class CommentsController extends Controller
         $comments = Comment::where('post_id', $post->id)->orderBy('id', 'DESC')->paginate(setting('PAGINATION_ADMIN'));
 
         $data = [
+            'post' => $post,
             'comments' => $comments,
         ];
 
