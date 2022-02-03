@@ -48,27 +48,6 @@ class SettingsController extends Controller
             'mail_from_address' => 'required|email',
         ]);
 
-
-        // if($request->mail_driver != env('MAIL_DRIVER'))
-        // {
-        //     $drivers = [
-        //         'smtp',
-        //         'sendmail',
-        //         'mailgun',
-        //         'ses',
-        //         'log',
-        //         'array',
-        //     ];
-        //     if(in_array($request->mail_driver, $drivers))
-        //     {
-        //         env_update('MAIL_DRIVER', $request->mail_driver);
-        //     }
-        //     else
-        //     {
-        //         abort(403);
-        //     }
-        // }
-
         $setting = new Setting();
 
         $setting_values = [
@@ -83,10 +62,6 @@ class SettingsController extends Controller
             [
                 'name' => 'USER_REGISTRATION',
                 'value' => $request->user_registration,
-            ],
-            [
-                'name' => 'MAIL_DRIVER',
-                'value' => $request->mail_driver,
             ],
             [
                 'name' => 'MAIL_HOST',
@@ -111,6 +86,7 @@ class SettingsController extends Controller
             ],
         ];
 
+        // MAIL PASSWORD
         if(isset($request->mail_password))
         {
             $mail_password = [
@@ -120,7 +96,29 @@ class SettingsController extends Controller
             array_push($setting_values, $mail_password);
         }
 
-        Log::info($setting_values);
+        // MAIL DRIVER
+        $drivers = [
+            'smtp',
+            'sendmail',
+            'mailgun',
+            'ses',
+            'log',
+            'array',
+        ];
+        if(in_array($request->mail_driver, $drivers))
+        {
+            $mail_driver = [
+                'name' => 'MAIL_DRIVER',
+                'value' => $request->mail_driver,
+            ];
+            array_push($setting_values, $mail_driver);
+        }
+        else
+        {
+            abort(403);
+        }
+
+        // Log::info($setting_values);
 
         $setting_index = 'name';
 

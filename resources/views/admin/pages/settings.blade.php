@@ -115,12 +115,12 @@
                                         <span class="text-danger">*</span>
                                         Mail Driver</label>
                                     <select name="mail_driver" class="custom-select">
-                                        <option value="smtp" @if(env('MAIL_DRIVER') == 'smtp') selected @endif>SMTP</option>
-                                        <option value="sendmail" @if(env('MAIL_DRIVER') == 'sendmail') selected @endif>Sendmail</option>
-                                        <option value="mailgun" @if(env('MAIL_DRIVER') == 'mailgun') selected @endif>Mailgun</option>
-                                        <option value="ses" @if(env('MAIL_DRIVER') == 'ses') selected @endif>Ses</option>
-                                        <option value="log" @if(env('MAIL_DRIVER') == 'log') selected @endif>Log</option>
-                                        <option value="array" @if(env('MAIL_DRIVER') == 'array') selected @endif>Array</option>
+                                        <option value="smtp" @if(setting('MAIL_DRIVER') == 'smtp') selected @endif>SMTP</option>
+                                        <option value="sendmail" @if(setting('MAIL_DRIVER') == 'sendmail') selected @endif>Sendmail</option>
+                                        <option value="mailgun" @if(setting('MAIL_DRIVER') == 'mailgun') selected @endif>Mailgun</option>
+                                        <option value="ses" @if(setting('MAIL_DRIVER') == 'ses') selected @endif>Ses</option>
+                                        <option value="log" @if(setting('MAIL_DRIVER') == 'log') selected @endif>Log</option>
+                                        <option value="array" @if(setting('MAIL_DRIVER') == 'array') selected @endif>Array</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
