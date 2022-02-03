@@ -161,42 +161,6 @@ class SettingsController extends Controller
 
         batch()->update($setting, $setting_values, $setting_index);
 
-
-
-
-        // if($request->mail_host != env('MAIL_HOST'))
-        // {
-        //     env_update('MAIL_HOST', $request->mail_host);
-        // }
-        // if($request->mail_port != env('MAIL_PORT'))
-        // {
-        //     env_update('MAIL_PORT', $request->mail_port);
-        // }
-        // if($request->mail_username != env('MAIL_USERNAME'))
-        // {
-        //     env_update('MAIL_USERNAME', $request->mail_username);
-        // }
-        // if(isset($request->mail_password) && $request->mail_password != env('MAIL_PASSWORD'))
-        // {
-        //     env_update('MAIL_PASSWORD', $request->mail_password);
-        // }
-        // if($request->mail_encryption != env('MAIL_ENCRYPTION'))
-        // {
-        //     env_update('MAIL_ENCRYPTION', $request->mail_encryption);
-        // }
-        // if($request->mail_from_address != env('MAIL_ENCRYPTION'))
-        // {
-        //     if(filter_var($request->mail_from_address, FILTER_VALIDATE_EMAIL))
-        //     {
-        //         env_update('MAIL_FROM_ADDRESS', $request->mail_from_address);
-        //     }
-        //     else
-        //     {
-        //         abort(403);
-        //     }
-        // }
-
-        // Artisan::call('cache:clear');
         Cache::flush();
 
         return back();
