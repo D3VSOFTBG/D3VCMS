@@ -37,6 +37,34 @@ class SettingSeeder extends Seeder
                 'name' => 'USER_REGISTRATION',
                 'value' => 1,
             ],
+            [
+                'name' => 'MAIL_DRIVER',
+                'value' => 'smtp',
+            ],
+            [
+                'name' => 'MAIL_HOST',
+                'value' => 'host',
+            ],
+            [
+                'name' => 'MAIL_PORT',
+                'value' => 'port',
+            ],
+            [
+                'name' => 'MAIL_USERNAME',
+                'value' => 'port',
+            ],
+            [
+                'name' => 'MAIL_PASSWORD',
+                'value' => 'password',
+            ],
+            [
+                'name' => 'MAIL_ENCRYPTION',
+                'value' => 'tls',
+            ],
+            [
+                'name' => 'MAIL_FROM_ADDRESS',
+                'value' => 'admin@example.com',
+            ],
         ]);
     }
 }

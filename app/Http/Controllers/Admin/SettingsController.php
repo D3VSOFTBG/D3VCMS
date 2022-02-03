@@ -9,6 +9,7 @@ use App\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SettingsController extends Controller
 {
@@ -33,17 +34,40 @@ class SettingsController extends Controller
     {
         // General
         $request->validate([
-            'title' => [
-                'required',
-            ],
-            'title_seperator' => [
-                'required',
-            ],
+            'title' => 'required',
+            'title_seperator' => 'required',
             'user_registration' => [
                 'required',
                 new TrueOrFalse,
             ],
+            'mail_driver' => 'required',
+            'mail_host' => 'required',
+            'mail_port' => 'required',
+            'mail_username' => 'required',
+            'mail_encryption' => 'required',
+            'mail_from_address' => 'required|email',
         ]);
+
+
+        // if($request->mail_driver != env('MAIL_DRIVER'))
+        // {
+        //     $drivers = [
+        //         'smtp',
+        //         'sendmail',
+        //         'mailgun',
+        //         'ses',
+        //         'log',
+        //         'array',
+        //     ];
+        //     if(in_array($request->mail_driver, $drivers))
+        //     {
+        //         env_update('MAIL_DRIVER', $request->mail_driver);
+        //     }
+        //     else
+        //     {
+        //         abort(403);
+        //     }
+        // }
 
         $setting = new Setting();
 
@@ -60,7 +84,43 @@ class SettingsController extends Controller
                 'name' => 'USER_REGISTRATION',
                 'value' => $request->user_registration,
             ],
+            [
+                'name' => 'MAIL_DRIVER',
+                'value' => $request->mail_driver,
+            ],
+            [
+                'name' => 'MAIL_HOST',
+                'value' => $request->mail_host,
+            ],
+            [
+                'name' => 'MAIL_PORT',
+                'value' => $request->mail_port,
+            ],
+            [
+                'name' => 'MAIL_USERNAME',
+                'value' => $request->mail_username,
+            ],
+
+            [
+                'name' => 'MAIL_ENCRYPTION',
+                'value' => $request->mail_encryption,
+            ],
+            [
+                'name' => 'MAIL_FROM_ADDRESS',
+                'value' => $request->mail_from_address,
+            ],
         ];
+
+        if(isset($request->mail_password))
+        {
+            $mail_password = [
+                'name' => 'MAIL_PASSWORD',
+                'value' => base64_encode($request->mail_password),
+            ];
+            array_push($setting_values, $mail_password);
+        }
+
+        Log::info($setting_values);
 
         $setting_index = 'name';
 
@@ -101,88 +161,42 @@ class SettingsController extends Controller
 
         batch()->update($setting, $setting_values, $setting_index);
 
-        // Mail
-        $request->validate([
-            'mail_driver' => [
-                'required',
-                new Banned,
-            ],
-            'mail_host' => [
-                'required',
-                new Banned,
-            ],
-            'mail_port' => [
-                'required',
-                new Banned,
-            ],
-            'mail_username' => [
-                'required',
-                new Banned,
-            ],
-            'mail_password' => [
-                new Banned,
-            ],
-            'mail_encryption' => [
-                'required',
-                new Banned,
-            ],
-            'mail_from_address' => [
-                'required',
-                new Banned,
-            ],
-        ]);
-        if($request->mail_driver != env('MAIL_DRIVER'))
-        {
-            $drivers = [
-                'smtp',
-                'sendmail',
-                'mailgun',
-                'ses',
-                'log',
-                'array',
-            ];
-            if(in_array($request->mail_driver, $drivers))
-            {
-                env_update('MAIL_DRIVER', $request->mail_driver);
-            }
-            else
-            {
-                abort(403);
-            }
-        }
-        if($request->mail_host != env('MAIL_HOST'))
-        {
-            env_update('MAIL_HOST', $request->mail_host);
-        }
-        if($request->mail_port != env('MAIL_PORT'))
-        {
-            env_update('MAIL_PORT', $request->mail_port);
-        }
-        if($request->mail_username != env('MAIL_USERNAME'))
-        {
-            env_update('MAIL_USERNAME', $request->mail_username);
-        }
-        if(isset($request->mail_password) && $request->mail_password != env('MAIL_PASSWORD'))
-        {
-            env_update('MAIL_PASSWORD', $request->mail_password);
-        }
-        if($request->mail_encryption != env('MAIL_ENCRYPTION'))
-        {
-            env_update('MAIL_ENCRYPTION', $request->mail_encryption);
-        }
-        if($request->mail_from_address != env('MAIL_ENCRYPTION'))
-        {
-            if(filter_var($request->mail_from_address, FILTER_VALIDATE_EMAIL))
-            {
-                env_update('MAIL_FROM_ADDRESS', $request->mail_from_address);
-            }
-            else
-            {
-                abort(403);
-            }
-        }
 
-        Artisan::call('cache:clear');
+
+
+        // if($request->mail_host != env('MAIL_HOST'))
+        // {
+        //     env_update('MAIL_HOST', $request->mail_host);
+        // }
+        // if($request->mail_port != env('MAIL_PORT'))
+        // {
+        //     env_update('MAIL_PORT', $request->mail_port);
+        // }
+        // if($request->mail_username != env('MAIL_USERNAME'))
+        // {
+        //     env_update('MAIL_USERNAME', $request->mail_username);
+        // }
+        // if(isset($request->mail_password) && $request->mail_password != env('MAIL_PASSWORD'))
+        // {
+        //     env_update('MAIL_PASSWORD', $request->mail_password);
+        // }
+        // if($request->mail_encryption != env('MAIL_ENCRYPTION'))
+        // {
+        //     env_update('MAIL_ENCRYPTION', $request->mail_encryption);
+        // }
+        // if($request->mail_from_address != env('MAIL_ENCRYPTION'))
+        // {
+        //     if(filter_var($request->mail_from_address, FILTER_VALIDATE_EMAIL))
+        //     {
+        //         env_update('MAIL_FROM_ADDRESS', $request->mail_from_address);
+        //     }
+        //     else
+        //     {
+        //         abort(403);
+        //     }
+        // }
+
+        // Artisan::call('cache:clear');
         Cache::flush();
 
         return back();

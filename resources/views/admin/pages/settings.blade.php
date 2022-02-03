@@ -128,21 +128,21 @@
                                         <span class="text-danger">*</span>
                                         Mail Host</label>
                                     <input name="mail_host" id="mail_host" type="text" class="form-control"
-                                        placeholder="Mail Host" value="{{env('MAIL_HOST')}}" required>
+                                        placeholder="Mail Host" value="{{setting('MAIL_HOST')}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="mail_port">
                                         <span class="text-danger">*</span>
                                         Mail Port</label>
                                     <input name="mail_port" id="mail_port" type="text" class="form-control"
-                                        placeholder="Mail Port" value="{{env('MAIL_PORT')}}" required>
+                                        placeholder="Mail Port" value="{{setting('MAIL_PORT')}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="mail_username">
                                         <span class="text-danger">*</span>
                                         Mail Username</label>
                                     <input name="mail_username" id="mail_username" type="text" class="form-control"
-                                        placeholder="Mail Username" value="{{env('MAIL_USERNAME')}}" required>
+                                        placeholder="Mail Username" value="{{setting('MAIL_USERNAME')}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="mail_password">
@@ -156,14 +156,14 @@
                                         <span class="text-danger">*</span>
                                         Mail Encryption</label>
                                     <input name="mail_encryption" id="mail_encryption" type="text" class="form-control"
-                                        placeholder="Mail Encryption" value="{{env('MAIL_ENCRYPTION')}}" required>
+                                        placeholder="Mail Encryption" value="{{setting('MAIL_ENCRYPTION')}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="mail_from_address">
                                         <span class="text-danger">*</span>
                                         Mail From Address</label>
                                     <input name="mail_from_address" id="mail_from_address" type="email" class="form-control"
-                                        placeholder="Mail From Address" value="{{env('MAIL_FROM_ADDRESS')}}" required>
+                                        placeholder="Mail From Address" value="{{setting('MAIL_FROM_ADDRESS')}}" required>
                                 </div>
                             </div>
                     </div>
