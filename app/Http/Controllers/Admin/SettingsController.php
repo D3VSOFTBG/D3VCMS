@@ -115,7 +115,7 @@ class SettingsController extends Controller
         {
             $mail_password = [
                 'name' => 'MAIL_PASSWORD',
-                'value' => base64_encode($request->mail_password),
+                'value' => d3vcms_encrypt($request->mail_password),
             ];
             array_push($setting_values, $mail_password);
         }

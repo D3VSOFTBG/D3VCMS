@@ -96,7 +96,7 @@ function set_mail_config()
         ],
         'encryption' => setting('MAIL_ENCRYPTION'),
         'username' => setting('MAIL_USERNAME'),
-        'password' => base64_decode(setting('MAIL_PASSWORD')),
+        'password' => d3vcms_decrypt(setting('MAIL_PASSWORD')),
     ];
 
     Config::set('mail', $set_mail_config);
